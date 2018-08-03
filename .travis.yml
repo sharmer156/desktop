@@ -47,10 +47,7 @@ cache:
     - $HOME/.cache/electron-builder
 
 env:
-  - YARN_VERSION=1.9.2
-  - CC=clang
-  - CXX=clang++
-  - npm_config_clang=1
+  - YARN_VERSION=1.9.2 CC=clang CXX=clang++ npm_config_clang=1
 
 install:
   - node ./vendor/yarn-$YARN_VERSION.js install --force
