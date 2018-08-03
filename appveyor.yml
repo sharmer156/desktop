@@ -25,20 +25,19 @@ install:
   - cmd: regedit /s script\default-to-tls12-on-appveyor.reg
   - ps: Install-Product node $env:nodejs_version $env:platform
   - git submodule update --init --recursive
-  - yarn install --force
+  - node ./vendor/yarn-1.9.2.js install --force
 
 build_script:
-  - yarn lint
-  - yarn validate-changelog
-  - yarn build:prod
+  - node ./vendor/yarn-1.9.2js lint
+  - node ./vendor/yarn-1.9.2.js validate-changelog
+  - node ./vendor/yarn-1.9.2.js build:prod
 
 test_script:
-  - node --version
-  - yarn test:setup
+  - node ./vendor/yarn-1.9.2.js test:setup
   - ./script/test-appveyor.bat
 
 on_success:
-  - yarn run publish
+  - node ./vendor/yarn-1.9.2.js run publish
 
 on_finish:
-  - yarn test:review
+  - node ./vendor/yarn-1.9.2.js test:review
