@@ -49,16 +49,19 @@ cache:
     - .eslintcache
     - $HOME/.cache/electron-builder
 
+env:
+  - YARN_VERSION=1.9.2
+
 install:
-  - node ./vendor/yarn-1.9.2.js install --force
+  - node ./vendor/yarn-$YARN_VERSION.js install --force
 
 script:
   - |
-    node ./vendor/yarn-1.9.2.js lint &&
-    node ./vendor/yarn-1.9.2.js validate-changelog &&
-    node ./vendor/yarn-1.9.2.js build:prod &&
-    node ./vendor/yarn-1.9.2.js test:setup &&
-    node ./vendor/yarn-1.9.2.js test
+    node ./vendor/yarn-$YARN_VERSION.js lint &&
+    node ./vendor/yarn-$YARN_VERSION.js validate-changelog &&
+    node ./vendor/yarn-$YARN_VERSION.js build:prod &&
+    node ./vendor/yarn-$YARN_VERSION.js test:setup &&
+    node ./vendor/yarn-$YARN_VERSION.js test
 
 after_failure:
-  - node ./vendor/yarn-1.9.2.js test:review
+  - node ./vendor/yarn-$YARN_VERSION.js test:review
