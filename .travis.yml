@@ -49,20 +49,16 @@ cache:
     - .eslintcache
     - $HOME/.cache/electron-builder
 
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.5.1
-  - export PATH=$HOME/.yarn/bin:$PATH
-
 install:
-  - yarn install --force
+  - node ./vendor/yarn-1.9.2.js install --force
 
 script:
   - |
-    yarn lint &&
-    yarn validate-changelog &&
-    yarn build:prod &&
-    yarn test:setup &&
-    yarn test
+    node ./vendor/yarn-1.9.2.js lint &&
+    node ./vendor/yarn-1.9.2.js validate-changelog &&
+    node ./vendor/yarn-1.9.2.js build:prod &&
+    node ./vendor/yarn-1.9.2.js test:setup &&
+    node ./vendor/yarn-1.9.2.js test
 
 after_failure:
-  - yarn test:review
+  - node ./vendor/yarn-1.9.2.js test:review
